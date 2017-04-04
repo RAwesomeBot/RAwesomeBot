@@ -26,7 +26,7 @@ REQS_NO_AUDIO_TXT = "requirements_no_audio.txt"
 FFMPEG_BUILDS_URL = "https://ffmpeg.zeranoe.com/builds/"
 
 INTRO = ("==========================\n"
-         "Red Discord Bot - Launcher\n"
+         "RAwesomeBot - Launcher\n"
          "==========================\n")
 
 IS_WINDOWS = os.name == "nt"
@@ -43,15 +43,15 @@ FFMPEG_FILES = {
 
 
 def parse_cli_arguments():
-    parser = argparse.ArgumentParser(description="Red - Discord Bot's launcher")
+    parser = argparse.ArgumentParser(description="RAwesomeBot's launcher")
     parser.add_argument("--start", "-s",
                         help="Starts Red",
                         action="store_true")
     parser.add_argument("--auto-restart",
-                        help="Autorestarts Red in case of issues",
+                        help="Autorestarts RAwsomeBot in case of issues",
                         action="store_true")
     parser.add_argument("--update-red",
-                        help="Updates Red (git)",
+                        help="Updates RAwesomeBot (git)",
                         action="store_true")
     parser.add_argument("--update-reqs",
                         help="Updates requirements (w/ audio)",
@@ -172,7 +172,7 @@ def reset_red(reqs=False, data=False, cogs=False, git_reset=False):
 
 def download_ffmpeg(bitness):
     clear_screen()
-    repo = "https://github.com/Twentysix26/Red-DiscordBot/raw/master/"
+    repo = "https://github.com/RAwesomeBot/RAwesomeBot/raw/master/"
     verified = []
 
     if bitness == "32bit":
@@ -282,8 +282,8 @@ def update_menu():
         print("Status: " + status + "\n")
         print("Update:\n")
         print("Red:")
-        print("1. Update Red + requirements (recommended)")
-        print("2. Update Red")
+        print("1. Update RAwesomeBot + requirements (recommended)")
+        print("2. Update RAwesomeBot")
         print("3. Update requirements")
         print("\nOthers:")
         print("4. Update pip (might require admin privileges)")
@@ -321,7 +321,7 @@ def maintenance_menu():
     while True:
         print(INTRO)
         print("Maintenance:\n")
-        print("1. Repair Red (discards code changes, keeps data intact)")
+        print("1. Repair RAwesomeBot (discards code changes, keeps data intact)")
         print("2. Wipe 'data' folder (all settings, cogs' data...)")
         print("3. Wipe 'lib' folder (all local requirements / local installed"
               " python packages)")
@@ -345,7 +345,7 @@ def maintenance_menu():
             reset_red(reqs=True)
             wait()
         elif choice == "4":
-            print("Are you sure? This will wipe ALL your Red's installation "
+            print("Are you sure? This will wipe ALL your RAwesomeBot's installation "
                   "data.\nYou'll lose all your settings, cogs and any "
                   "modification you have made.\nThere is no going back.")
             if user_pick_yes_no():
@@ -363,7 +363,7 @@ def run_red(autorestart):
         raise RuntimeError("Couldn't find Python's interpreter")
 
     if verify_requirements() is None:
-        print("You don't have the requirements to start Red. "
+        print("You don't have the requirements to start this bot. "
               "Install them from the launcher.")
         if not INTERACTIVE_MODE:
             exit(1)
@@ -386,7 +386,7 @@ def run_red(autorestart):
                 if not autorestart:
                     break
 
-    print("Red has been terminated. Exit code: %d" % code)
+    print("RAwesomeBot has been terminated. Exit code: %d" % code)
 
     if INTERACTIVE_MODE:
         wait()
@@ -443,7 +443,7 @@ def calculate_md5(filename):
 
 
 def create_fast_start_scripts():
-    """Creates scripts for fast boot of Red without going
+    """Creates scripts for fast boot of RAwesomeBot without going
     through the launcher"""
     interpreter = sys.executable
     if not interpreter:
@@ -495,7 +495,7 @@ def main():
     has_git = is_git_installed()
     is_git_installation = os.path.isdir(".git")
     if IS_WINDOWS:
-        os.system("TITLE Red Discord Bot - Launcher")
+        os.system("TITLE RAwesomeBot - Launcher")
     clear_screen()
 
     try:
@@ -507,20 +507,20 @@ def main():
         print(INTRO)
 
         if not is_git_installation:
-            print("WARNING: It doesn't look like Red has been "
+            print("WARNING: It doesn't look like RAwesomeBot has been "
                   "installed with git.\nThis means that you won't "
                   "be able to update and some features won't be working.\n"
                   "A reinstallation is recommended. Follow the guide "
                   "properly this time:\n"
-                  "https://twentysix26.github.io/Red-Docs/\n")
+                  "https://rawesomebot.github.io/Docs/\n")
 
         if not has_git:
             print("WARNING: Git not found. This means that it's either not "
                   "installed or not in the PATH environment variable like "
                   "requested in the guide.\n")
 
-        print("1. Run Red /w autorestart in case of issues")
-        print("2. Run Red")
+        print("1. Run RAwesomeBot /w autorestart in case of issues")
+        print("2. Run RAwesomeBot")
         print("3. Update")
         print("4. Install requirements")
         print("5. Maintenance (repair, reset...)")
@@ -548,13 +548,13 @@ if __name__ == '__main__':
     # Sets current directory to the script's
     os.chdir(dirname)
     if not PYTHON_OK:
-        print("Red needs Python 3.5 or superior. Install the required "
+        print("RAwesomeBot needs Python 3.5 or superior. Install the required "
               "version.\nPress enter to continue.")
         if INTERACTIVE_MODE:
             wait()
         exit(1)
     if pip is None:
-        print("Red cannot work without the pip module. Please make sure to "
+        print("RAwesomeBot cannot work without the pip module. Please make sure to "
               "install Python without unchecking any option during the setup")
         wait()
         exit(1)
@@ -569,5 +569,5 @@ if __name__ == '__main__':
     if INTERACTIVE_MODE:
         main()
     elif args.start:
-        print("Starting Red...")
+        print("Starting RAwesomeBot...")
         run_red(autorestart=args.auto_restart)
